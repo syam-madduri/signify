@@ -3,9 +3,9 @@ package com.signify.assignment;
 
 import com.signify.assignment.dto.AverageRatingDTO;
 import com.signify.assignment.dto.ReviewDTO;
-import com.signify.assignment.entity.Reviews;
-import com.signify.assignment.repository.ReviewsRepository;
-import com.signify.assignment.service.ReviewsService;
+import com.signify.assignment.entity.Review;
+import com.signify.assignment.repository.ReviewRepository;
+import com.signify.assignment.service.ReviewService;
 import org.junit.jupiter.api.*;
 import org.junit.jupiter.api.extension.ExtendWith;
 import org.mockito.InjectMocks;
@@ -22,24 +22,24 @@ import static org.mockito.Mockito.doReturn;
 class AssignmentApplicationTests {
 
 	@InjectMocks
-	private ReviewsService service;
+	private ReviewService service;
 
 	@Mock
-	private ReviewsRepository repository;
+	private ReviewRepository repository;
 
 
 
 	@Test
 	@Order(1)
 	void saveReviewTestCase(){
-		Reviews review = new Reviews();
+		Review review = new Review();
 		review.setReviewed_date(new Date());
 		review.setReview("Test Review");
 		review.setAuthor("Signify");
 		review.setProduct_name("iTunes");
 		review.setRating(4);
 		doReturn(review).when(repository).save(any());
-		Reviews result = service.save(review);
+		Review result = service.save(review);
 		Assertions.assertEquals("iTunes", result.getProduct_name());
 		Assertions.assertEquals("Signify", result.getAuthor());
 		Assertions.assertEquals(4, result.getRating());
@@ -98,15 +98,15 @@ class AssignmentApplicationTests {
 		);
 	}
 
-	private List<Reviews> groupByRatings() {
+	private List<Review> groupByRatings() {
 		return List.of(
-				new Reviews(new Date(), "Test Review from Amazon alexa", "Signify", "GooglePlayStore", 2, "Super", "Amazon Alexa" ),
-				new Reviews(new Date(), "Test Review from Amazon alexa", "Signify", "GooglePlayStore", 5, "Super", "Amazon Alexa" ),
-				new Reviews(new Date(), "Test Review from iTunes", "Signify", "iTunes", 4, "Super", "iTunes" ),
-				new Reviews(new Date(), "This review used for test case", "Signify", "GooglePlayStore", 3, "Super", "Amazon Alexa" ),
-				new Reviews(new Date(), "This review used for test case", "Signify", "iTunes", 3, "Super", "iTunes" ),
-				new Reviews(new Date(), "This review used for test case", "Signify", "GooglePlayStore", 1, "Super", "Amazon Alexa" ),
-				new Reviews(new Date(), "This review used for test case", "Signify", "GooglePlayStore", 1, "Super", "Amazon Alexa" )
+				new Review(new Date(), "Test Review from Amazon alexa", "Signify", "GooglePlayStore", 2, "Super", "Amazon Alexa" ),
+				new Review(new Date(), "Test Review from Amazon alexa", "Signify", "GooglePlayStore", 5, "Super", "Amazon Alexa" ),
+				new Review(new Date(), "Test Review from iTunes", "Signify", "iTunes", 4, "Super", "iTunes" ),
+				new Review(new Date(), "This review used for test case", "Signify", "GooglePlayStore", 3, "Super", "Amazon Alexa" ),
+				new Review(new Date(), "This review used for test case", "Signify", "iTunes", 3, "Super", "iTunes" ),
+				new Review(new Date(), "This review used for test case", "Signify", "GooglePlayStore", 1, "Super", "Amazon Alexa" ),
+				new Review(new Date(), "This review used for test case", "Signify", "GooglePlayStore", 1, "Super", "Amazon Alexa" )
 		);
 	}
 

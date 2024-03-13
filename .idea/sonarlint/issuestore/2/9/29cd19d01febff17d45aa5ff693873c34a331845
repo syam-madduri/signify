@@ -1,0 +1,6 @@
+
++
+java:S1700"Rename field "review"(öş­¾
+m	java:S116"XRename this field "reviewed_date" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(ÇçÄÓ
+m	java:S116"XRename this field "review_source" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(öŸı
+l	java:S116"WRename this field "product_name" to match the regular expression '^[a-z][a-zA-Z0-9]*$'.(Ó½•ù

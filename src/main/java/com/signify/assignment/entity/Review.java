@@ -10,7 +10,7 @@ import java.util.Date;
 @AllArgsConstructor
 @NoArgsConstructor
 @Entity
-public class Reviews {
+public class Review {
     @Id
     Date reviewed_date;
     @Lob

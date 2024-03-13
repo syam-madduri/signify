@@ -2,8 +2,8 @@ package com.signify.assignment;
 
 import com.fasterxml.jackson.core.type.TypeReference;
 import com.fasterxml.jackson.databind.ObjectMapper;
-import com.signify.assignment.entity.Reviews;
-import com.signify.assignment.service.ReviewsService;
+import com.signify.assignment.entity.Review;
+import com.signify.assignment.service.ReviewService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -23,14 +23,14 @@ public class AssignmentApplication {
 
 
 	@Bean
-	CommandLineRunner runner(ReviewsService reviewsService){
+	CommandLineRunner runner(ReviewService reviewsService){
 		return args -> {
 			// read alexa.json
 			ObjectMapper mapper = new ObjectMapper();
-			TypeReference<List<Reviews>> typeReference = new TypeReference<List<Reviews>>(){};
+			TypeReference<List<Review>> typeReference = new TypeReference<List<Review>>(){};
 			InputStream inputStream = TypeReference.class.getResourceAsStream("/json/alexa.json");
 			try {
-				List<Reviews> reviews = mapper.readValue(inputStream,typeReference);
+				List<Review> reviews = mapper.readValue(inputStream,typeReference);
 				reviews.forEach(reviewsService::save);
 				System.out.println("Reviews Saved!");
 			} catch (IOException e){
